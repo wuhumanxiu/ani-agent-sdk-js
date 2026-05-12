@@ -45,7 +45,7 @@ npm run typecheck
 
 ## Protocol Sync
 
-The SDK vendors the backend protocol contract under `protocol/`.
+The SDK vendors the backend protocol contract under `protocol/`, including `routes.generated.json` generated from the backend router.
 
 ```bash
 npm run protocol:fetch

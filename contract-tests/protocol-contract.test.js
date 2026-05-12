@@ -9,9 +9,12 @@ const protocol = path.join(root, "protocol");
 test("required REST paths exist in OpenAPI snapshot", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(protocol, "manifest.json"), "utf8"));
   const openapi = fs.readFileSync(path.join(protocol, "openapi.yaml"), "utf8");
+  const routeContract = JSON.parse(fs.readFileSync(path.join(protocol, "routes.generated.json"), "utf8"));
+  const routes = new Set(routeContract.routes.map((route) => route.path));
 
   for (const requiredPath of manifest.requiredRestPaths) {
     assert.match(openapi, new RegExp(escapeRegExp(requiredPath)));
+    assert.ok(routes.has(requiredPath), requiredPath);
   }
 });
 
@@ -38,4 +41,3 @@ test("required WebSocket events exist in schema", () => {
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
-
