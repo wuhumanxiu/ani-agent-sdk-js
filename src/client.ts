@@ -1,4 +1,4 @@
-import type { AniClientOptions, AniUser, SendMessageResult, SendTextOptions } from "./types.js";
+import type { AniClientOptions, AniUser, CreateConversationOptions, SendMessageResult, SendTextOptions } from "./types.js";
 
 interface ApiEnvelope {
   ok?: boolean;
@@ -70,6 +70,23 @@ export class AniClient {
     };
   }
 
+  async createConversation(options: CreateConversationOptions = {}): Promise<Record<string, unknown>> {
+    const payload: Record<string, unknown> = {
+      conv_type: options.convType ?? "direct",
+      participant_public_ids: options.participantPublicIds ?? [],
+    };
+    if (options.title) payload.title = options.title;
+    if (options.description) payload.description = options.description;
+    if (options.sourcePublicId) payload.source_public_id = options.sourcePublicId;
+    return asRecord(await this.request("POST", "/conversations", payload));
+  }
+
+  async batchPresence(publicIds: string[]): Promise<Record<string, boolean>> {
+    const data = asRecord(await this.request("POST", "/presence/batch", { public_ids: publicIds }));
+    const presence = asRecord(data.presence_by_public_id);
+    return Object.fromEntries(Object.entries(presence).map(([key, value]) => [key, Boolean(value)]));
+  }
+
   private async request(method: string, path: string, body?: unknown): Promise<unknown> {
     const response = await this.fetchImpl(`${this.apiBaseUrl}${path}`, {
       method,
@@ -101,4 +118,3 @@ function asRecord(value: unknown): Record<string, unknown> {
 function asString(value: unknown): string {
   return typeof value === "string" ? value : "";
 }
-

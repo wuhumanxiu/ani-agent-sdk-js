@@ -56,3 +56,41 @@ test("sendText sends public mentions", async () => {
   assert.match(payload, /"reply_to":7/);
 });
 
+test("createConversation sends public ids", async () => {
+  let payload = "";
+  const client = new AniClient({
+    serverUrl: "https://agent-native.im",
+    apiKey: "aim_test",
+    fetchImpl: async (_input, init) => {
+      payload = String(init?.body ?? "");
+      return Response.json({ ok: true, data: { id: 77 } });
+    },
+  });
+
+  const result = await client.createConversation({
+    title: "Team",
+    sourcePublicId: "bot-public",
+    participantPublicIds: ["alice-public"],
+  });
+
+  assert.equal(result.id, 77);
+  assert.match(payload, /"source_public_id":"bot-public"/);
+  assert.match(payload, /"participant_public_ids":\["alice-public"\]/);
+});
+
+test("batchPresence sends public ids", async () => {
+  let payload = "";
+  const client = new AniClient({
+    serverUrl: "https://agent-native.im",
+    apiKey: "aim_test",
+    fetchImpl: async (_input, init) => {
+      payload = String(init?.body ?? "");
+      return Response.json({ ok: true, data: { presence_by_public_id: { "alice-public": true } } });
+    },
+  });
+
+  const presence = await client.batchPresence(["alice-public"]);
+
+  assert.deepEqual(presence, { "alice-public": true });
+  assert.match(payload, /"public_ids":\["alice-public"\]/);
+});

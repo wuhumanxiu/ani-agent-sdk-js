@@ -36,3 +36,10 @@ export interface SendMessageResult {
   raw: Record<string, unknown>;
 }
 
+export interface CreateConversationOptions {
+  title?: string;
+  convType?: "direct" | "group" | "channel";
+  participantPublicIds?: string[];
+  sourcePublicId?: string;
+  description?: string;
+}

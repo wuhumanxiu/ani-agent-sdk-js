@@ -28,6 +28,16 @@ test("required send fields exist in protocol contract", () => {
   }
 });
 
+test("required public_id fields exist in protocol contract", () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(protocol, "manifest.json"), "utf8"));
+  const openapi = fs.readFileSync(path.join(protocol, "openapi.yaml"), "utf8");
+  const wsSchema = fs.readFileSync(path.join(protocol, "ws-events.schema.json"), "utf8");
+
+  for (const field of manifest.requiredPublicIdFields) {
+    assert.ok(openapi.includes(field) || wsSchema.includes(field), field);
+  }
+});
+
 test("required WebSocket events exist in schema", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(protocol, "manifest.json"), "utf8"));
   const schema = JSON.parse(fs.readFileSync(path.join(protocol, "ws-events.schema.json"), "utf8"));
