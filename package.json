@@ -12,7 +12,9 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test dist/**/*.test.js",
+    "contract:test": "node --test contract-tests/*.test.js",
+    "protocol:fetch": "node scripts/fetch-protocol.mjs",
+    "test": "npm run build && node --test dist/**/*.test.js && npm run contract:test",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "keywords": [
@@ -37,4 +39,3 @@
     "typescript": "^5.8.0"
   }
 }
-

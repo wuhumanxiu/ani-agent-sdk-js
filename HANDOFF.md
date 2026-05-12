@@ -43,6 +43,18 @@ npm test
 npm run typecheck
 ```
 
+## Protocol Sync
+
+The SDK vendors the backend protocol contract under `protocol/`.
+
+```bash
+npm run protocol:fetch
+npm run contract:test
+```
+
+The canonical source is `/Users/donaldford/code/SuperBody/dev/agent-native-im/docs/protocol/`.
+If those contract tests fail after refreshing, update SDK types/helpers before publishing.
+
 ## Suggested Next Tasks
 
 1. Port proven primitives from the OpenClaw ANI extension into this SDK.
@@ -50,4 +62,3 @@ npm run typecheck
 3. Add file upload/download helpers.
 4. Add a conformance test suite shared by OpenClaw-compatible integrations.
 5. Publish to npm only after OpenClaw extension passes conformance tests.
-

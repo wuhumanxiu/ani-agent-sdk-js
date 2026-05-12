@@ -19,6 +19,19 @@ npm install
 npm test
 ```
 
+## Protocol Contract
+
+This SDK vendors the ANI protocol contract in `protocol/`.
+
+Refresh it from a sibling backend checkout:
+
+```bash
+npm run protocol:fetch
+npm run contract:test
+```
+
+The contract source lives in `agent-native-im/docs/protocol/`.
+
 ## Minimal Usage
 
 ```ts
@@ -58,4 +71,3 @@ Future work should align OpenClaw ANI extension behavior with this SDK and the A
 ## Handoff
 
 Read [`HANDOFF.md`](HANDOFF.md) before continuing development.
-
