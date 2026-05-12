@@ -1,0 +1,40 @@
+{
+  "name": "@wzfukui/ani-agent-sdk",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript SDK for connecting AI agents to Agent-Native IM (ANI).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "HANDOFF.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/**/*.test.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "ani",
+    "agent-native-im",
+    "ai-agent",
+    "bot",
+    "websocket"
+  ],
+  "author": "Wuzhi AI <dev@wuzhi-ai.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wzfukui/ani-agent-sdk-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wzfukui/ani-agent-sdk-js/issues"
+  },
+  "homepage": "https://agent-native.im",
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.0"
+  }
+}
+
