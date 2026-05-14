@@ -48,13 +48,31 @@ export class AniClient {
     options: SendTextOptions = {},
   ): Promise<SendMessageResult> {
     const payload: Record<string, unknown> = {
-      conversation_id: conversationId,
       content_type: options.contentType ?? "text",
       layers: { summary: text },
     };
+    if (options.conversationPublicId) {
+      payload.conversation_public_id = options.conversationPublicId;
+    } else if (typeof conversationId === "string" && !/^\d+$/.test(conversationId.trim())) {
+      payload.conversation_public_id = conversationId;
+    } else {
+      payload.conversation_id = conversationId;
+    }
 
     if (options.mentionPublicIds?.length) {
       payload.mention_public_ids = options.mentionPublicIds;
+    }
+    if (options.mentionRefs?.length) {
+      payload.mention_refs = options.mentionRefs.map((ref) => ({
+        public_id: ref.publicId,
+        handle: ref.handle,
+        display_name: ref.displayName,
+        entity_type: ref.entityType,
+        text: ref.text,
+      }));
+    }
+    if (options.assignedPublicIds !== undefined) {
+      payload.assigned_public_ids = options.assignedPublicIds;
     }
     if (options.replyTo) {
       payload.reply_to = Number(options.replyTo);

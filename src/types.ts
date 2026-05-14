@@ -21,11 +21,24 @@ export interface AniMessage {
   summary: string;
   mentions: number[];
   mentionPublicIds: string[];
+  mentionRefs: MentionRef[];
+  assignedPublicIds: string[];
   raw: Record<string, unknown>;
 }
 
+export interface MentionRef {
+  publicId?: string;
+  handle?: string;
+  displayName?: string;
+  entityType?: string;
+  text?: string;
+}
+
 export interface SendTextOptions {
+  conversationPublicId?: string;
   mentionPublicIds?: string[];
+  mentionRefs?: MentionRef[];
+  assignedPublicIds?: string[];
   replyTo?: number | string;
   contentType?: string;
 }

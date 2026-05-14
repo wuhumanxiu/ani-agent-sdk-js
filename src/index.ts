@@ -4,6 +4,7 @@ export type {
   CreateConversationOptions,
   AniMessage,
   AniUser,
+  MentionRef,
   SendTextOptions,
   SendMessageResult,
 } from "./types.js";

@@ -56,6 +56,28 @@ test("sendText sends public mentions", async () => {
   assert.match(payload, /"reply_to":7/);
 });
 
+test("sendText sends public conversation, mention refs, and assignments", async () => {
+  let payload = "";
+  const client = new AniClient({
+    serverUrl: "https://agent-native.im",
+    apiKey: "aim_test",
+    fetchImpl: async (_input, init) => {
+      payload = String(init?.body ?? "");
+      return Response.json({ ok: true, data: { id: 124 } });
+    },
+  });
+
+  const result = await client.sendText("conv-public", "@Alice hello", {
+    mentionRefs: [{ publicId: "alice-public", handle: "bot_alice", text: "@Alice" }],
+    assignedPublicIds: [],
+  });
+
+  assert.equal(result.id, 124);
+  assert.match(payload, /"conversation_public_id":"conv-public"/);
+  assert.match(payload, /"mention_refs":\[\{"public_id":"alice-public","handle":"bot_alice","text":"@Alice"\}\]/);
+  assert.match(payload, /"assigned_public_ids":\[\]/);
+});
+
 test("createConversation sends public ids", async () => {
   let payload = "";
   const client = new AniClient({
