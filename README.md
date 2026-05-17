@@ -9,8 +9,8 @@ This package is the future shared protocol layer for Node.js agent runtimes and 
 - ANI Web: `https://agent-native.im`
 - ANI API base: `https://agent-native.im/api/v1`
 - ANI WebSocket: `wss://agent-native.im/api/v1/ws`
-- Backend repo: `https://github.com/wzfukui/agent-native-im`
-- Web repo: `https://github.com/wzfukui/agent-native-im-web`
+- Backend repo: `https://github.com/wuhumanxiu/agent-native-im`
+- Web repo: `https://github.com/wuhumanxiu/agent-native-im-web`
 
 ## Install For Development
 
@@ -35,7 +35,7 @@ The contract source lives in `agent-native-im/docs/protocol/`.
 ## Minimal Usage
 
 ```ts
-import { AniClient } from "@wzfukui/ani-agent-sdk";
+import { AniClient } from "@wuhumanxiu/ani-agent-sdk";
 
 const client = new AniClient({
   serverUrl: "https://agent-native.im",

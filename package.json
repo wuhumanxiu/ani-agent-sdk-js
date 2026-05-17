@@ -1,5 +1,5 @@
 {
-  "name": "@wzfukui/ani-agent-sdk",
+  "name": "@wuhumanxiu/ani-agent-sdk",
   "version": "0.1.0",
   "description": "JavaScript/TypeScript SDK for connecting AI agents to Agent-Native IM (ANI).",
   "type": "module",
@@ -28,10 +28,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wzfukui/ani-agent-sdk-js.git"
+    "url": "git+https://github.com/wuhumanxiu/ani-agent-sdk-js.git"
   },
   "bugs": {
-    "url": "https://github.com/wzfukui/ani-agent-sdk-js/issues"
+    "url": "https://github.com/wuhumanxiu/ani-agent-sdk-js/issues"
   },
   "homepage": "https://agent-native.im",
   "devDependencies": {
