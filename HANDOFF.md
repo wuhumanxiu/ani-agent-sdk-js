@@ -8,12 +8,12 @@ Create the canonical JavaScript/TypeScript SDK used by Node.js AI agent runtimes
 
 ## Related Projects
 
-- ANI backend: `/Users/donaldford/code/SuperBody/dev/agent-native-im`
-- ANI web: `/Users/donaldford/code/SuperBody/dev/agent-native-im-web`
-- OpenClaw ANI installer: `/Users/donaldford/code/SuperBody/dev/openclaw-ani-installer`
-- OpenClaw upstream sync repo: `/Users/donaldford/code/SuperBody/dev/openclaw-upstream-sync`
-- Zebra runtime reference: `/Users/donaldford/code/SuperBody/dev/zebra-agent`
-- Hermes runtime reference: `/Users/donaldford/code/SuperBody/dev/hermes-agent`
+- ANI backend: `dev/agent-native-im`
+- ANI web: `dev/agent-native-im-web`
+- OpenClaw ANI installer: `dev/openclaw-ani-installer`
+- OpenClaw upstream sync repo: `dev/openclaw-upstream-sync`
+- Zebra runtime reference: `dev/zebra-agent`
+- Hermes runtime reference: `dev/hermes-agent`
 
 ## Production Environment
 
@@ -37,7 +37,7 @@ Do not hard-code production credentials. Bot access packs provide `ANI_SERVER_UR
 ## Development Commands
 
 ```bash
-cd /Users/donaldford/code/SuperBody/dev/ani-agent-sdk-js
+cd dev/ani-agent-sdk-js
 npm install
 npm test
 npm run typecheck
@@ -52,7 +52,7 @@ npm run protocol:fetch
 npm run contract:test
 ```
 
-The canonical source is `/Users/donaldford/code/SuperBody/dev/agent-native-im/docs/protocol/`.
+The canonical source is `dev/agent-native-im/docs/protocol/`.
 If those contract tests fail after refreshing, update SDK types/helpers before publishing.
 
 ## Suggested Next Tasks
